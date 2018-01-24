@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     public Text questionDisplayText;
     public Text scoreDisplayText;
     public Text timeRemainingDisplayText;
+    public Text highScoreDisplay;
     public SimpleObjectPool answerButtonObjectPool;
     public Transform answerButtonParent;
     public GameObject questionDisplay;
@@ -38,6 +39,20 @@ public class GameController : MonoBehaviour
         isRoundActive = true;
     }
 
+    void Update()
+    {
+        if (isRoundActive)
+        {
+            timeRemaining -= Time.deltaTime;
+            UpdateTimeRemainingDisplay();
+
+            if (timeRemaining <= 0f)
+            {
+                EndRound();
+            }
+        }
+    }
+
     private void ShowQuestion()
     {
         // 이전 답변 버튼 다지우기
@@ -53,6 +68,7 @@ public class GameController : MonoBehaviour
             GameObject answerButtonGameObject = answerButtonObjectPool.GetObject();
             answerButtonGameObjects.Add(answerButtonGameObject);
             answerButtonGameObject.transform.SetParent(answerButtonParent);
+            answerButtonGameObject.transform.localScale = Vector3.one;
 
             AnswerButton answerButton = answerButtonGameObject.GetComponent<AnswerButton>();
             answerButton.Setup(questionData.answers[i]);
@@ -88,9 +104,17 @@ public class GameController : MonoBehaviour
         }
     }
 
+    private void UpdateTimeRemainingDisplay()
+    {
+        timeRemainingDisplayText.text = "Time: " + Mathf.Round(timeRemaining).ToString();
+    }
+
     public void EndRound()
     {
         isRoundActive = false;
+
+        dataController.SubmitNewPlayerScore(playerScore);
+        highScoreDisplay.text = dataController.GetHighestPlayerScore().ToString();
 
         questionDisplay.SetActive(false);
         roundEndDisplay.SetActive(true);
@@ -99,24 +123,5 @@ public class GameController : MonoBehaviour
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("MenuScreen");
-    }
-
-    private void UpdateTimeRemainingDisplay()
-    {
-        timeRemainingDisplayText.text = "Time: " + Mathf.Round(timeRemaining).ToString();
-    }
-
-    void Update()
-    {
-        if (isRoundActive)
-        {
-            timeRemaining -= Time.deltaTime;
-            UpdateTimeRemainingDisplay();
-
-            if (timeRemaining <= 0f)
-            {
-                EndRound();
-            }
-        }
     }
 }

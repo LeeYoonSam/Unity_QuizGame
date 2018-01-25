@@ -12,7 +12,8 @@ public class StartupManager : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene("Persistenet");
+        // SceneManager.LoadScene("Persistenet");
+        SceneManager.LoadScene("MenuScreen");
 
     }
 }

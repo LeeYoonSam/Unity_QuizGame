@@ -1,1 +1,36 @@
-{"items":[{"key":"game_title","value":"Quiz Spiel"},{"key":"start_button","value":"Spiel Beginnen"}]}
+{
+    "items": [
+        {
+            "key": "game_title",
+            "value": "Quiz Spiel"
+        },
+        {
+            "key": "start_button",
+            "value": "Spiel Beginnen"
+        },
+        {
+            "key": "quiz_title",
+            "value": "퀴즈 게임"
+        },
+        {
+            "key": "txt_time",
+            "value": "시간"
+        },
+        {
+            "key": "txt_score",
+            "value": "점수"
+        },
+        {
+            "key": "txt_gameover",
+            "value": "게임종료"
+        },
+        {
+            "key": "txt_highscore",
+            "value": "최고점수"
+        },
+        {
+            "key": "txt_menu",
+            "value": "메뉴"
+        }
+    ]
+}

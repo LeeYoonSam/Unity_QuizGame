@@ -1,0 +1,53 @@
+{
+    "allRoundData": [
+        {
+            "name": "숫자놀이",
+            "timeLimitInSeconds": 30,
+            "pointsAddedForCorrectAnswer": 10,
+            "questions": [
+                {
+                    "questionText": "어떤 숫자가 가장 큰가?",
+                    "answers": [
+                        {
+                            "answerText": "100",
+                            "isCorrect": false
+                        },
+                        {
+                            "answerText": "200",
+                            "isCorrect": false
+                        },
+                        {
+                            "answerText": "300",
+                            "isCorrect": false
+                        },
+                        {
+                            "answerText": "400",
+                            "isCorrect": true
+                        }
+                    ]
+                },
+                {
+                    "questionText": "어떤 숫자가 가장 작은가?",
+                    "answers": [
+                        {
+                            "answerText": "100",
+                            "isCorrect": true
+                        },
+                        {
+                            "answerText": "200",
+                            "isCorrect": false
+                        },
+                        {
+                            "answerText": "300",
+                            "isCorrect": false
+                        },
+                        {
+                            "answerText": "400",
+                            "isCorrect": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

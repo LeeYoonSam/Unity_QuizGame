@@ -14,7 +14,10 @@ public class GameController : MonoBehaviour
     public GameObject questionDisplay;
     public GameObject roundEndDisplay;
 
-    private DataController dataController;
+    // private DataController dataController;
+
+    private LocalizationManager localizationManager;
+
     private RoundData currentRoundData;
     private QuestionData[] questionPool;
 
@@ -26,14 +29,23 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        dataController = FindObjectOfType<DataController>();
-        currentRoundData = dataController.GetCurrentRoundData();
+        // dataController = FindObjectOfType<DataController>();
+        // currentRoundData = dataController.GetCurrentRoundData();
+
+        localizationManager = FindObjectOfType<LocalizationManager>();
+        currentRoundData = localizationManager.GetCurrentRoundData();
+
+
         questionPool = currentRoundData.questions;
         timeRemaining = currentRoundData.timeLimitInSeconds;
         UpdateTimeRemainingDisplay();
 
         playerScore = 0;
         questionIndex = 0;
+
+        // 점수 초기화
+        string scoreLocalizaed = localizationManager.GetLocalizedValue("txt_score");
+        scoreDisplayText.text = scoreLocalizaed + ": 0";
 
         ShowQuestion();
         isRoundActive = true;
@@ -90,7 +102,10 @@ public class GameController : MonoBehaviour
         if (isCorrect)
         {
             playerScore += currentRoundData.pointsAddedForCorrectAnswer;
-            scoreDisplayText.text = "Score: " + playerScore.ToString();
+
+            // 언어 가져오기
+            string scoreLocalizaed = localizationManager.GetLocalizedValue("txt_score");
+            scoreDisplayText.text = scoreLocalizaed + ": " + playerScore.ToString();
         }
 
         if (questionPool.Length > questionIndex + 1)
@@ -106,15 +121,20 @@ public class GameController : MonoBehaviour
 
     private void UpdateTimeRemainingDisplay()
     {
-        timeRemainingDisplayText.text = "Time: " + Mathf.Round(timeRemaining).ToString();
+        // 언어 가져오기
+        string timeLocalizaed = localizationManager.GetLocalizedValue("txt_time");
+        timeRemainingDisplayText.text = timeLocalizaed + ": " + Mathf.Round(timeRemaining).ToString();
     }
 
     public void EndRound()
     {
         isRoundActive = false;
 
-        dataController.SubmitNewPlayerScore(playerScore);
-        highScoreDisplay.text = dataController.GetHighestPlayerScore().ToString();
+        // dataController.SubmitNewPlayerScore(playerScore);
+        // highScoreDisplay.text = dataController.GetHighestPlayerScore().ToString();
+
+        localizationManager.SubmitNewPlayerScore(playerScore);
+        highScoreDisplay.text = localizationManager.GetHighestPlayerScore().ToString();
 
         questionDisplay.SetActive(false);
         roundEndDisplay.SetActive(true);

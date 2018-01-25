@@ -1,1 +1,36 @@
-{"items":[{"key":"game_title","value":"Quiz Game"},{"key":"start_button","value":"Start Game"}]}
+{
+    "items": [
+        {
+            "key": "game_title",
+            "value": "Quiz Game"
+        },
+        {
+            "key": "start_button",
+            "value": "Start Game"
+        },
+        {
+            "key": "quiz_title",
+            "value": "Quiz Game"
+        },
+        {
+            "key": "txt_time",
+            "value": "Time"
+        },
+        {
+            "key": "txt_score",
+            "value": "Score"
+        },
+        {
+            "key": "txt_gameover",
+            "value": "ROUND OVER"
+        },
+        {
+            "key": "txt_highscore",
+            "value": "High Score"
+        },
+        {
+            "key": "txt_menu",
+            "value": "Menu"
+        }
+    ]
+}
